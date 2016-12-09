@@ -1,9 +1,10 @@
 #include <Servo.h>
 
-Servo servoBase1;  // create base servo object to control a servo
-Servo servoBase2;  // create base servo object to control a servo
+Servo servoBase1, servoBase2;
 
-Servo servoLeg;  // create leg servo object to control a servo
+//Servo servoBases[4] = {servoBase1, servoBase2};  // create base servo object to control a servo
+
+Servo servoLeg1, servoLeg2;  // create leg servo object to control a servo
 // twelve servo objects can be created on most boards
 
 int pos = 0;    // variable to store the servo position
@@ -11,12 +12,14 @@ int pos = 0;    // variable to store the servo position
 void setup() {
   servoBase1.attach(8);
   servoBase2.attach(7);  // attaches the servo on pin 7 to the servo object
-  servoLeg.attach(6); // attaches the servo on pin 6 to the servo object
+  servoLeg1.attach(6); // attaches the servo on pin 6 to the servo object
+  servoLeg2.attach(5);
 
   // hinge leg setup
   for (pos = 0; pos <= 130; pos++) { // goes from 0 degrees to  degrees
     // in steps of 1 degree
-    servoLeg.write(pos);              // tell servo to go to position in variable 'pos'
+    servoLeg1.write(pos);              // tell servo to go to position in variable 'pos'
+    servoLeg2.write(pos);
     delay(5);                       // waits 5ms for the servo to reach the position
   }
 //  for (pos = 130; pos >= 0; pos--) { // goes from 45 degrees to 0 degrees
@@ -26,13 +29,20 @@ void setup() {
 }
 
 void loop() {
-  baseLegIn(servoBase1); // move the base leg in
-  baseLegIn(servoBase2); // move the base leg in
-  hingeLegIn(servoLeg); // move the hinge leg in
+
+// in
+  baseLegIn(servoBase1); 
+  hingeLegIn(servoLeg1);
   
-  baseLegOut(servoBase1); // move the base leg out
-  baseLegOut(servoBase2); // move the base leg out
-  hingeLegOut(servoLeg); // move the hinge leg out
+  baseLegIn(servoBase2); 
+  hingeLegIn(servoLeg2);
+
+// out
+  baseLegOut(servoBase1); 
+  hingeLegOut(servoLeg1);
+  
+  baseLegOut(servoBase2); 
+  hingeLegOut(servoLeg2); 
 }
 
 //============================
@@ -79,3 +89,5 @@ void hingeLegOut(Servo &hinge) {
     delay(3);                       // waits 5ms for the servo to reach the position
   }
 }
+
+
