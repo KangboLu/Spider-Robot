@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 Servo servoBase1;  // create base servo object to control a servo
-Servo servoBase1;  // create base servo object to control a servo
+Servo servoBase2;  // create base servo object to control a servo
 
 Servo servoLeg;  // create leg servo object to control a servo
 // twelve servo objects can be created on most boards
@@ -9,7 +9,8 @@ Servo servoLeg;  // create leg servo object to control a servo
 int pos = 0;    // variable to store the servo position
 
 void setup() {
-  servoBase.attach(7);  // attaches the servo on pin 7 to the servo object
+  servoBase1.attach(8);
+  servoBase2.attach(7);  // attaches the servo on pin 7 to the servo object
   servoLeg.attach(6); // attaches the servo on pin 6 to the servo object
 
   // hinge leg setup
@@ -25,10 +26,12 @@ void setup() {
 }
 
 void loop() {
-  baseLegIn(servoBase); // move the base leg in
+  baseLegIn(servoBase1); // move the base leg in
+  baseLegIn(servoBase2); // move the base leg in
   hingeLegIn(servoLeg); // move the hinge leg in
   
-  baseLegOut(servoBase); // move the base leg out
+  baseLegOut(servoBase1); // move the base leg out
+  baseLegOut(servoBase2); // move the base leg out
   hingeLegOut(servoLeg); // move the hinge leg out
 }
 
@@ -76,5 +79,3 @@ void hingeLegOut(Servo &hinge) {
     delay(3);                       // waits 5ms for the servo to reach the position
   }
 }
-
-
