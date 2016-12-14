@@ -10,10 +10,11 @@ Servo servoLeg1, servoLeg2;  // create leg servo object to control a servo
 int pos = 0;    // variable to store the servo position
 
 void setup() {
-  servoBase1.attach(8); // attaches the leg servo on pin 8 to the servo object
-  servoBase2.attach(7); // attaches the leg servo on pin 7 to the servo object
+  servoBase1.attach(8); // attaches the leg servo on pin 8 to the servo object--6
+  servoBase2.attach(7); // attaches the leg servo on pin 7 to the servo object--5
+  
   servoLeg1.attach(6);  // attaches the hinge ervo on pin 6 to the servo object
-  servoLeg2.attach(5);  // attaches the hinge ervo on pin 6 to the servo object
+  servoLeg2.attach(5);  // attaches the hinge ervo on pin 5 to the servo object
 
   // hinge leg setup
   for (pos = 0; pos <= 130; pos++) { // goes from 0 degrees to  degrees
@@ -89,3 +90,4 @@ void hingeLegOut(Servo &hinge) {
     delay(4);                       // waits 5ms for the servo to reach the position
   }
 }
+
