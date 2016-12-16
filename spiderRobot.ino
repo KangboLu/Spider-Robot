@@ -1,58 +1,51 @@
 #include <Servo.h>
-
 // twelve servo objects can be created on most boards
+
 Servo servoBase1, servoBase2, servoBase3, servoBase4; // create base servo object to control a servo
-
-//Servo servoBases[4] = {servoBase1, servoBase2};  
-
-Servo servoLeg1, servoLeg2, servoLeg3, servoLeg4;  // create leg servo object to control a servo
+Servo servoLeg1,  servoLeg2,  servoLeg3,  servoLeg4;  // create leg servo object to control a servo
 
 int pos = 0;    // variable to store the servo position
 
 void setup() {
-  servoBase1.attach(10); // attaches the leg servo on pin 10 to the servo object--5
-  servoBase2.attach(9); // attaches the leg servo on pin 9 to the servo object--4
-  servoBase3.attach(8); // attaches the leg servo on pin 7 to the servo object--3
-  servoBase4.attach(7); // attaches the leg servo on pin 6 to the servo object--2
-  
-  servoLeg1.attach(6);  // attaches the hinge ervo on pin 6 to the servo object
-  servoLeg2.attach(5);  // attaches the hinge ervo on pin 5 to the servo object
+  // attaches the leg servo on specific pin to the servoBase object
+  servoBase1.attach(10);
+  servoBase2.attach(9);
+  servoBase3.attach(8);
+  servoBase4.attach(7);
 
-  // base leg setup goes from 0 degrees to 50 degrees
-//  for (pos = 10; pos <= 50; pos++) { 
-//    // tell servo to go to position in variable 'pos' in steps of 1 degree
-//    servoBase1.write(pos);             
-//    servoBase2.write(pos);
-//    servoBase3.write(pos);
-//    servoBase4.write(pos);
-//    
-//    delay(4);                       // waits 4ms for the servo to reach the position
-//  }
-  
-  // hinge leg setup
-//  for (pos = 0; pos <= 130; pos++) { // goes from 0 degrees to  degrees
-//    // in steps of 1 degree
-//    servoLeg1.write(pos);              // tell servo to go to position in variable 'pos'
-//    servoLeg2.write(pos);
-//    delay(5);                       // waits 5ms for the servo to reach the position
-//  }
-//  for (pos = 130; pos >= 0; pos--) { // goes from 45 degrees to 0 degrees
-//    servoLeg.write(pos);              // tell servo to go to position in variable 'pos'
-//    delay(5);                       // waits 15ms for the servo to reach the position
-//  }
+  // attaches the hinge servo on specific pin to the servoLeg object
+  servoLeg2.attach(6);
+  servoLeg4.attach(5);
+  servoLeg1.attach(4);  
+  servoLeg3.attach(3);
+
+  // reset legs
+  resetLegs();
 }
 
 void loop() {
-  baseLegIn(servoBase1); 
-  hingeLegIn(servoLeg1);
-
-  baseLegOut(servoBase1); 
-  hingeLegOut(servoLeg1); 
+    
 }
 
-//============================
-//         BASE LEG          /
-//============================
+//=======================
+//       TESTING        |
+//=======================
+void resetLegs() {
+ /// testing
+  servoBase1.write(180);
+  servoBase2.write(0);
+  servoBase3.write(180);
+  servoBase4.write(0);
+  
+  servoLeg2.write(180);
+  servoLeg4.write(180);
+  servoLeg1.write(0);  
+  servoLeg3.write(0);
+}
+
+// ============================
+//|         BASE LEG          |
+// ============================
 
 // function move the base leg in
 void baseLegIn(Servo &base) {
@@ -74,7 +67,7 @@ void baseLegOut(Servo &base) {
 }
 
 //============================
-//         HINGE LEG         /
+//         HINGE LEG         |
 //============================
 
 // function move the hinge leg in
@@ -96,32 +89,16 @@ void hingeLegOut(Servo &hinge) {
 }
 
 //==========================
-//       MOVEMENT          /
+//       MOVEMENT          |
 //==========================
 void circular() {
-  // move leg 1 & 3 in and out
-//  baseLegIn(servoBase1); 
-//  hingeLegIn(servoLeg1);
-//
-//  baseLegOut(servoBase1); 
-//  hingeLegOut(servoLeg1);
-//
-//  baseLegIn(servoBase2); 
-//  hingeLegIn(servoLeg2);
-//
-//  baseLegOut(servoBase2); 
-//  hingeLegOut(servoLeg2);
+  
+}
 
-  // move leg 2 & 4 in and out
-  baseLegIn(servoBase3); 
-//  hingeLegIn(servoLeg3);
-//
-  baseLegOut(servoBase3); 
-//  hingeLegOut(servoLeg3); 
-//
-//  baseLegIn(servoBase4); 
-//  hingeLegIn(servoLeg4);
-//  
-//  baseLegOut(servoBase4); 
-//  hingeLegOut(servoLeg4); 
+void forward() {
+  
+}
+
+void backward() {
+  
 }
