@@ -16,62 +16,30 @@ void setup() {
   // attaches the hinge servo on specific pin to the servoLeg object
   servoLeg2.attach(6);
   servoLeg4.attach(5);
-  servoLeg1.attach(4);  
+  servoLeg1.attach(4);
   servoLeg3.attach(3);
 
   // reset legs
-  resetLegs();  
+  resetLegs();
 }
 
 void loop() {
-// front
-  servoBase3.write(160);
 
-delay(300);
-
-  servoBase4.write(20);
-
-delay(300);
-
-  servoBase3.write(180);
-
-delay(300);
-
-  servoBase4.write(0);
-
-// back
-delay(300);
-
-  servoBase1.write(160);
-
-delay(300);
-
-  servoBase2.write(20);
-
-delay(300);
-
-  servoBase1.write(180);
-
-delay(300);
-
-  servoBase2.write(0);
-
-delay(300);
 }
 
 //=======================
 //       TESTING        |
 //=======================
 void resetLegs() {
- /// testing
+  /// testing
   servoBase1.write(180);
   servoBase2.write(0);
   servoBase3.write(180);
   servoBase4.write(0);
-  
+
   servoLeg2.write(180);
   servoLeg4.write(180);
-  servoLeg1.write(0);  
+  servoLeg1.write(0);
   servoLeg3.write(0);
 }
 
@@ -82,7 +50,7 @@ void resetLegs() {
 // function move the base leg in
 void baseLegIn(Servo &base) {
   // goes from 0 degrees to 50 degrees in steps of 1 degree
-  for (pos = 40; pos <= 80; pos++) { 
+  for (pos = 40; pos <= 80; pos++) {
     // in steps of 1 degree
     base.write(pos);                // tell servo to go to position in variable 'pos'
     delay(6);                       // waits 5ms for the servo to reach the position
@@ -92,7 +60,7 @@ void baseLegIn(Servo &base) {
 // function move the base leg out
 void baseLegOut(Servo &base) {
   // goes from 50 degrees to 0 degrees in steps of 1 degree
-  for (pos = 80; pos >= 40; pos--) { 
+  for (pos = 80; pos >= 40; pos--) {
     base.write(pos);                // tell servo to go to position in variable 'pos'
     delay(6);                       // waits 5ms for the servo to reach the position
   }
@@ -105,7 +73,7 @@ void baseLegOut(Servo &base) {
 // function move the hinge leg in
 void hingeLegIn(Servo &hinge) {
   // goes from podition 130 to 140 degree in steps of 1 degree
-  for (pos = 0; pos <= 40; pos++) {  
+  for (pos = 0; pos <= 40; pos++) {
     hinge.write(pos);               // tell servo to go to position in variable 'pos'
     delay(5);                       // waits 5ms for the servo to reach the position
   }
@@ -123,14 +91,65 @@ void hingeLegOut(Servo &hinge) {
 //==========================
 //       MOVEMENT          |
 //==========================
-void circular() {
-  
+
+void moveDownLeg(Servo &hinge, int side, int start, int finish) {
+  // 2, 4 are 1; 1, 3 are 0
+  if (side) {
+    for (pos = start; pos >= finish; pos--) {
+      // in steps of 1 degree
+      hinge.write(pos);                // tell servo to go to position in variable 'pos'
+      delay(6);                       // waits 5ms for the servo to reach the position
+    }  
+  } else {
+    for (pos = start; pos <= finish; pos++) {
+      // in steps of 1 degree
+      hinge.write(pos);                // tell servo to go to position in variable 'pos'
+      delay(6);                       // waits 5ms for the servo to reach the position
+    }
+  }
 }
 
-void forward() {
-  
+// move the robot down
+void sleepMode() {
+  servoBase1.write(180);
+  servoBase2.write(0);
+  servoBase3.write(180);
+  servoBase4.write(0);
+
+  moveDownLeg(servoLeg2, 1, 180, 100);
+//  servoLeg2.write(100);
+  moveDownLeg(servoLeg4, 1, 180, 100);
+//  servoLeg4.write(100);
+  moveDownLeg(servoLeg1, 0, 0, 80);
+//  servoLeg1.write(80);
+  moveDownLeg(servoLeg3, 0, 0, 80;)
+//  servoLeg3.write(80);
 }
 
-void backward() {
-  
+// move the robot up
+void riseMode() {
+  resetLegs(); // reset the robot to get it up
+}
+
+// move the robot
+void moveMode() {
+  // front movement
+  servoBase3.write(160);
+  delay(300);
+  servoBase4.write(20);
+  delay(300);
+  servoBase3.write(180);
+  delay(300);
+  servoBase4.write(0);
+
+  // back movement
+  delay(300);
+  servoBase1.write(160);
+  delay(300);
+  servoBase2.write(20);
+  delay(300);
+  servoBase1.write(180);
+  delay(300);
+  servoBase2.write(0);
+  delay(300);
 }
