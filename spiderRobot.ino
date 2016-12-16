@@ -5,6 +5,8 @@ Servo servoBase1, servoBase2, servoBase3, servoBase4; // create base servo objec
 Servo servoLeg1,  servoLeg2,  servoLeg3,  servoLeg4;  // create leg servo object to control a servo
 
 int pos = 0;    // variable to store the servo position
+int lightLevel; // light level reading variable
+bool standing = 1;
 
 void setup() {
   // attaches the leg servo on specific pin to the servoBase object
@@ -27,11 +29,28 @@ void setup() {
 
   // reset again
   //resetLegs();
+  Serial.begin(9600);
 }
 
 void loop() {
-  //resetLegs();
-  //moveMode();
+  lightLevel = analogRead(A0); // 
+  Serial.print("light sensor value = ");
+  Serial.print(lightLevel);
+  Serial.println();
+
+  if (lightLevel > 300){
+    if (standing != 0)
+      sleepMode();
+    standing = 0;  
+  }
+  else {
+    if (!standing) {
+      standing = 1;
+      resetLegs(); 
+      delay(500);
+    }
+    moveMode();
+  }
 }
 
 //=======================
