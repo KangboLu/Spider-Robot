@@ -21,10 +21,17 @@ void setup() {
 
   // reset legs
   resetLegs();
+
+  // sleep the mode
+  //sleepMode();
+
+  // reset again
+  //resetLegs();
 }
 
 void loop() {
-
+  //resetLegs();
+  //moveMode();
 }
 
 //=======================
@@ -117,18 +124,9 @@ void sleepMode() {
   servoBase4.write(0);
 
   moveDownLeg(servoLeg2, 1, 180, 100);
-//  servoLeg2.write(100);
   moveDownLeg(servoLeg4, 1, 180, 100);
-//  servoLeg4.write(100);
   moveDownLeg(servoLeg1, 0, 0, 80);
-//  servoLeg1.write(80);
-  moveDownLeg(servoLeg3, 0, 0, 80;)
-//  servoLeg3.write(80);
-}
-
-// move the robot up
-void riseMode() {
-  resetLegs(); // reset the robot to get it up
+  moveDownLeg(servoLeg3, 0, 0, 80);
 }
 
 // move the robot
