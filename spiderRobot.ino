@@ -20,11 +20,43 @@ void setup() {
   servoLeg3.attach(3);
 
   // reset legs
-  resetLegs();
+  resetLegs();  
 }
 
 void loop() {
-    
+// front
+  servoBase3.write(160);
+
+delay(300);
+
+  servoBase4.write(20);
+
+delay(300);
+
+  servoBase3.write(180);
+
+delay(300);
+
+  servoBase4.write(0);
+
+// back
+delay(300);
+
+  servoBase1.write(160);
+
+delay(300);
+
+  servoBase2.write(20);
+
+delay(300);
+
+  servoBase1.write(180);
+
+delay(300);
+
+  servoBase2.write(0);
+
+delay(300);
 }
 
 //=======================
