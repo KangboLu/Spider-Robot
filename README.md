@@ -1,5 +1,8 @@
 # Spider-Robot
 Robotics class project
+##V3 Spider Robot Photo:
+![spider-robot](/spider-robot.png?raw=true "Optional Title")
+
 ##Version 1:
 Using wood sticks to prototype and servos to test out the movement of the robot's back leg
 
